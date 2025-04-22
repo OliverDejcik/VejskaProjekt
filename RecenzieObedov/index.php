@@ -21,11 +21,7 @@
         <p>Najdete zde přehled hodnocení jednotlivých jídel – jak z hlediska chuti, tak i celkové kvality a servírování. Můžete přidávat vlastní recenze, hodnotit porce, rozmanitost nabídky nebo třeba i rychlost výdeje. Každý komentář pomáhá ostatním udělat si lepší představu o tom, co je na talíři.</p>
         <p>Také si můžete otevřít přehled jednotlivých jídelen, které se účastní našeho systému, a zjistit, jak si vedou v očích ostatních strávníků. Porovnávejte menzy mezi sebou, vybírejte si obědy na základě reálných zkušeností a přispějte svým hodnocením ke zlepšení kvality školního stravování pro všechny.</p>
         <p>Zapojte se do komunity studentů, kterým není jedno, co jí. Pomozte nám budovat prostředí, kde se zpětná vazba proměňuje ve skutečnou změnu – ať už jde o lepší oběd, vstřícnější personál nebo pestřejší nabídku jídel.</p>
-
-
-        <form action="/php_skripty/connection.php" method="post">
-            <button type="submit">Otestuj připojení k databázi</button>
-        </form>
+        
     </div>
 
 </body>
