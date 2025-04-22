@@ -82,5 +82,37 @@ INSERT INTO users (
   TRUE
 );
 
+Dalej si vlozte tieto data nech sa vam to vsetko riadne vykresluje:
+Selecty treba vlozit samostatne a postupne v takomto poradi:
+1. Vložiť menzu
+2. Vložiť obedy (potrebujú menza_id)
+3. Vložiť používateľov
+4. Vložiť recenzie (potrebujú user_id a obed_id)
+
+-- 1. Vloženie menzy (aby `menza_id = 1` existovalo)
+INSERT INTO menza (nazev, adresa) VALUES 
+('Menza VSB', 'Studentská 1, Ostrava');
+
+-- 2. Vloženie obedov
+INSERT INTO obedy (nazev_obedu, datum_vydani, hodnoceni, menza_id, cas_vyhodnoceni) VALUES
+('Svíčková na smetaně s houskovým knedlíkem', CURDATE(), 4.5, 1, NOW()),
+('Kuřecí řízek s bramborovou kaší', CURDATE(), 3.8, 1, NOW()),
+('Vegetariánské rizoto se zeleninou', CURDATE(), 4.0, 1, NOW()),
+('Špagety Bolognese s parmazánem', CURDATE(), 4.2, 1, NOW());
+
+-- 3. Vloženie používateľov
+INSERT INTO users (osobni_cislo, skolni_email, heslo, avatar, jmeno, prijmeni, role, created_at, last_login, is_admin) VALUES
+('NOV0011', 'adam.novak@vsb.cz', 'heslo123', '/avatars/novak.jpg', 'Adam', 'Novák', 'student', NOW(), NULL, FALSE),
+('KRA0002', 'bara.kralova@vsb.cz', 'heslo456', '/avatars/kralova.jpg', 'Bára', 'Králová', 'student', NOW(), NULL, FALSE),
+('SVE0023', 'cyril.svoboda@vsb.cz', 'heslo789', '/avatars/svoboda.jpg', 'Cyril', 'Svoboda', 'student', NOW(), NULL, FALSE),
+('KOL0014', 'dana.kolarova@vsb.cz', 'heslo321', '/avatars/kolarova.jpg', 'Dana', 'Kolářová', 'student', NOW(), NULL, FALSE),
+('BER0005', 'eva.bernardova@vsb.cz', 'heslo654', '/avatars/bernardova.jpg', 'Eva', 'Bernardová', 'student', NOW(), NULL, FALSE);
+
+-- 4. Vloženie recenzií (tu treba správne user_id a obed_id)
+-- Pozor: ID sa prideľujú AUTO_INCREMENT, takže ak sú tabuľky prázdne, prví používatelia majú ID 1-5 a obedy 1-4
+INSERT INTO recenze (user_id, obed_id, text_recenze, hodnoceni, created_at) VALUES
+(2, 1, 'Velmi chutné jídlo, knedlíky měkké a omáčka výborná!', 5, NOW()),
+(3, 2, 'Řízek byl dobrý, ale bramborová kaše byla bez chuti.', 3, NOW());
+
 
 
