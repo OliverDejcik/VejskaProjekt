@@ -7,7 +7,8 @@
 </head>
 <body>
     <?php include '../php_skripty/navbar.php'; ?>
-
+    
+    <form action="action_page.php" method="post">
     <div class="container">
         <label for="uname"><b>Zadejte osobní číslo:</b></label>
         <input type="text" placeholder="Osobní číslo" name="uname" required>
@@ -17,5 +18,6 @@
 
         <button type="submit">Přihlásit se</button>
     </div>
+    </form>
 </body>
 </html>
