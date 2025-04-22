@@ -15,13 +15,13 @@
         <label for="uname"><b>Zadejte osobní číslo:</b></label>
         <input type="text" placeholder="Osobní číslo" name="uname" required>
 
-        <label for="email"><b>Zadejte e-mail</b></label>
+        <label for="email"><b>Zadejte e-mail:</b></label>
         <input type="text" placeholder="Email" name="email" required>
 
-        <label for="jmeno"><b>Zadejte jmeno</b></label>
+        <label for="jmeno"><b>Zadejte jmeno:</b></label>
         <input type="text" placeholder="Jméno" name="jmeno" required>
 
-        <label for="prijmeni"><b>Zadejte příjmení</b></label>
+        <label for="prijmeni"><b>Zadejte příjmení:</b></label>
         <input type="text" placeholder="Příjmení" name="prijmeni" required>
 
         <label for="psw"><b>Zadejte heslo:</b></label>
@@ -35,9 +35,9 @@
             <option value="zak">Žák</option>
             <option value="ucitel">Učitel</option>
             <option value="cizi">Nejsem učitelem ani žákem VŠB</option>
-        </selec>
+        </select>
 
-        <button type="submit">Přihlásit se</button>
+        <button type="submit">Registrovat se</button>
     </div>
     </form>
 </body>
