@@ -1,0 +1,7 @@
+K praci budes potrebovat programy:
+XAMPP: https://www.apachefriends.org
+Heidi sql: www.heidisql.com/download.php
+
+Tu si naklonuj subory z githubu: C:/xampp/htdocs/VejskaProjekt
+Cez tento link si ich otvoris v prehliadaci: http://localhost/VejskaProjekt/RecenzieObedov/
+
