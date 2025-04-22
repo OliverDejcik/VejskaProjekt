@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Recenze Obědů</title>
     <link rel="stylesheet" href="style.css">
+    <!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Recenze Obědů</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <a href="#">Přihlášení</a>
-        <a href="#">Registrace</a>
-        <a href="#">Přehled recenzí</a>
-        <a href="#">Seznam obědů</a>
-        <a href="#">Seznam jídelen</a>
-    </nav>
+    <?php include 'php_skripty/navbar.php'; ?>
 
     <div class="container">
         <h1>Vítejte na stránce Recenze Obědů</h1>
