@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Přehled obědů</title>
+    <title>Seznam jídelen</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
