@@ -4,7 +4,7 @@ $pages = [
     "Registrace" => "#",
     "Přehled recenzí" => "#",
     "Seznam obědů" => "#",
-    "Seznam jídelen" => "#"
+    "Seznam jídelen" => "#",
 ];
 
 echo '<nav>';
