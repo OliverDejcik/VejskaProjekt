@@ -1,0 +1,2 @@
+tu si ukladame subory: C:/xampp/htdocs/RecenzieObedov
+a v tomto ich otvorime na prehliadaci: http://localhost/RecenzieObedov/
