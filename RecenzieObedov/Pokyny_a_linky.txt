@@ -9,8 +9,8 @@ Po otvoreni XAMPP spusti prve 2 veci
 Potom spusti hedisql otvor server co tam mas a zadaj tieto selecty postupne:
 
 -- 1. Vytvorenie databázy
-CREATE DATABASE IF NOT EXISTS Recenze_obedu;
-USE Recenze_obedu;
+CREATE DATABASE IF NOT EXISTS recenze_obedu;
+USE recenze_obedu;
 
 -- 2. Tabuľka menza
 CREATE TABLE IF NOT EXISTS menza (
