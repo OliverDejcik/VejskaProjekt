@@ -23,7 +23,7 @@
         <p>Zapojte se do komunity studentů, kterým není jedno, co jí. Pomozte nám budovat prostředí, kde se zpětná vazba proměňuje ve skutečnou změnu – ať už jde o lepší oběd, vstřícnější personál nebo pestřejší nabídku jídel.</p>
 
 
-        <form action="connection.php" method="post">
+        <form action="/php_skripty/connection.php" method="post">
             <button type="submit">Otestuj připojení k databázi</button>
         </form>
     </div>
