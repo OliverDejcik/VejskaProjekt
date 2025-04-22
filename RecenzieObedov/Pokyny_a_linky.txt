@@ -5,3 +5,82 @@ Heidi sql: www.heidisql.com/download.php
 Tu si naklonuj subory z githubu: C:/xampp/htdocs/VejskaProjekt
 Cez tento link si ich otvoris v prehliadaci: http://localhost/VejskaProjekt/RecenzieObedov/
 
+Po otvoreni XAMPP spusti prve 2 veci
+Potom spusti hedisql otvor server co tam mas a zadaj tieto selecty postupne:
+
+-- 1. Vytvorenie databázy
+CREATE DATABASE IF NOT EXISTS Recenze_obedu;
+USE Recenze_obedu;
+
+-- 2. Tabuľka menza
+CREATE TABLE IF NOT EXISTS menza (
+  menza_id INT AUTO_INCREMENT PRIMARY KEY,
+  nazev VARCHAR(255),
+  adresa VARCHAR(255)
+);
+
+-- 3. Tabuľka obedy
+CREATE TABLE IF NOT EXISTS obedy (
+  obed_id INT AUTO_INCREMENT PRIMARY KEY,
+  nazev_obedu VARCHAR(255),
+  datum_vydani DATE,
+  hodnoceni FLOAT,
+  menza_id INT,
+  cas_vyhodnoceni TIMESTAMP,
+  FOREIGN KEY (menza_id) REFERENCES menza (menza_id)
+);
+
+-- 4. Tabuľka users
+CREATE TABLE IF NOT EXISTS users (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  osobni_cislo VARCHAR(255) UNIQUE NOT NULL,
+  skolni_email VARCHAR(255) UNIQUE,
+  heslo VARCHAR(255) NOT NULL,
+  avatar VARCHAR(255),
+  jmeno VARCHAR(255),
+  prijmeni VARCHAR(255),
+  role VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_login TIMESTAMP NULL,
+  is_admin BOOLEAN
+);
+
+-- 5. Tabuľka recenze
+CREATE TABLE IF NOT EXISTS recenze (
+  recenze_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  obed_id INT,
+  text_recenze TEXT,
+  hodnoceni INT,
+  created_at TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users (user_id),
+  FOREIGN KEY (obed_id) REFERENCES obedy (obed_id)
+);
+
+-- 6. Vloženie admin užívateľa
+INSERT INTO users (
+  osobni_cislo,
+  skolni_email,
+  heslo,
+  avatar,
+  jmeno,
+  prijmeni,
+  role,
+  created_at,
+  last_login,
+  is_admin
+) VALUES (
+  'ADMIN0001',
+  'admin@vsb.cz',
+  'tajneheslo123',
+  '/avatars/admin.jpg',
+  'Admin',
+  'Uživatel',
+  'admin',
+  NOW(),
+  NULL,
+  TRUE
+);
+
+
+
