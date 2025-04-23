@@ -119,4 +119,7 @@ Link na hashovanie hesiel tento link pouzijes iba raz predtym ako niekoho regist
 http://localhost/VejskaProjekt/RecenzieObedov/php_skripty/hash_existing_passwords.php
 
 
-po pouziti pouzijes tento select: ALTER TABLE users ADD COLUMN plain_password VARCHAR(255) AFTER heslo;
+po pouziti pouzijes tento select: 
+1.= ALTER TABLE users ADD COLUMN plain_password VARCHAR(255) AFTER heslo;
+
+2.= 
