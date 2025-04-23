@@ -115,4 +115,8 @@ INSERT INTO recenze (user_id, obed_id, text_recenze, hodnoceni, created_at) VALU
 (3, 2, 'Řízek byl dobrý, ale bramborová kaše byla bez chuti.', 3, NOW());
 
 
+Link na hashovanie hesiel tento link pouzijes iba raz predtym ako niekoho registrujes ak sa ti ho podari spustit viackrat pojebes si data v databaze 
+http://localhost/VejskaProjekt/RecenzieObedov/php_skripty/hash_existing_passwords.php
 
+
+po pouziti pouzijes tento select: ALTER TABLE users ADD COLUMN plain_password VARCHAR(255) AFTER heslo;
