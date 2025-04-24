@@ -122,4 +122,12 @@ http://localhost/VejskaProjekt/RecenzieObedov/php_skripty/hash_existing_password
 po pouziti pouzijes tento select: 
 1.= ALTER TABLE users ADD COLUMN plain_password VARCHAR(255) AFTER heslo;
 
-2.= 
+2.
+-- Pridanie plain_password pre všetkých existujúcich používateľov vrátane admina
+UPDATE users SET plain_password = 'tajneheslo123' WHERE osobni_cislo = 'ADMIN0001';
+UPDATE users SET plain_password = 'heslo123' WHERE osobni_cislo = 'NOV0011';
+UPDATE users SET plain_password = 'heslo456' WHERE osobni_cislo = 'KRA0002';
+UPDATE users SET plain_password = 'heslo789' WHERE osobni_cislo = 'SVE0023';
+UPDATE users SET plain_password = 'heslo321' WHERE osobni_cislo = 'KOL0014';
+UPDATE users SET plain_password = 'heslo654' WHERE osobni_cislo = 'BER0005';
+
