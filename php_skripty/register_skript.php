@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($heslo !== $heslo2) {
         die("Hesla se neshodují.");
     }
+    if ($role === "zak") {
+        $role = "student";
+    }
 
     // Hashovanie hesla
     $hashed_password = password_hash($heslo, PASSWORD_DEFAULT);
@@ -25,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ssssssss", $osobni_cislo, $email, $hashed_password, $heslo, $avatar, $jmeno, $prijmeni, $role);
 
     if ($stmt->execute()) {
-        echo "Registrace úspěšná. <a href='login.php'>Přihlásit se</a>";
+        header("Location: ./login.php");
     } else {
-        echo "Chyba při registraci: " . $stmt->error;
+        echo "Registrace neúspěšná. <a href='register.php'>Opakovat registraci</a>";
     }
 
     $stmt->close();
