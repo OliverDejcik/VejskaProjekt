@@ -13,7 +13,9 @@
     <form action="php_skripty/register_skript.php" method="post">
     <div class="container">
         <label for="uname"><b>Zadejte osobní číslo:</b></label>
-        <input type="text" placeholder="Osobní číslo" name="osobni_cislo" required>
+        <input type="text" placeholder="Osobní číslo" name="uname" required
+        pattern="^[A-Z]{3}[0-9]{4}$" title="Zadejte 3 velká písmena a 4 čísla, například: NOV0012">
+
 
         <label for="email"><b>Zadejte e-mail:</b></label>
         <input type="email" placeholder="Email" name="email" required>
@@ -25,10 +27,12 @@
         <input type="text" placeholder="Příjmení" name="prijmeni" required>
 
         <label for="psw"><b>Zadejte heslo:</b></label>
-        <input type="password" placeholder="Heslo" name="psw" required>
+        <input type="password" placeholder="Heslo" name="psw" required
+        pattern="^\S{6,}$" title="Heslo musí mít alespoň 6 znaků a nesmí obsahovat mezery.">
 
-        <label for="psw_2"><b>Zadejte heslo znovu:</b></label>
-        <input type="password" placeholder="Heslo" name="psw_2" required>
+        <label for="psw_2"><b>Znovu zadejte heslo:</b></label>
+        <input type="password" placeholder="Heslo znovu" name="psw_2" required
+        pattern="^\S{6,}$" title="Heslo musí mít alespoň 6 znaků a nesmí obsahovat mezery.">
 
         <label for="role"><b>Role:</b></label>
         <select name="role" id="role">
