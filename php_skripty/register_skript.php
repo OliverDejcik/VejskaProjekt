@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssss", $osobni_cislo, $email, $hashed_password, $heslo, $jmeno, $prijmeni, $role);
 
     if ($stmt->execute()) {
-        header("Location: login.php?success=Registrace byla úspěšná");
+        header("Location: ./login.php?success=Registrace byla úspěšná");
         exit();
     } else {
         $error = urlencode("Chyba při registraci: " . $stmt->error);
