@@ -4,21 +4,21 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Seznam obědů</title>
+    <title>Registrace</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php include 'php_skripty/navbar.php'; ?>
     
-    <form action="action_page.php" method="post">
+    <form action="php_skripty/register_skript.php" method="post">
     <div class="container">
         <label for="uname"><b>Zadejte osobní číslo:</b></label>
-        <input type="text" placeholder="Osobní číslo" name="uname" required>
+        <input type="text" placeholder="Osobní číslo" name="osobni_cislo" required>
 
         <label for="email"><b>Zadejte e-mail:</b></label>
-        <input type="text" placeholder="Email" name="email" required>
+        <input type="email" placeholder="Email" name="email" required>
 
-        <label for="jmeno"><b>Zadejte jmeno:</b></label>
+        <label for="jmeno"><b>Zadejte jméno:</b></label>
         <input type="text" placeholder="Jméno" name="jmeno" required>
 
         <label for="prijmeni"><b>Zadejte příjmení:</b></label>

@@ -9,7 +9,7 @@ if (isset($_SESSION["user_id"])) {
         "Seznam recenzí" => "prehled_recenzi.php",
         "Seznam obědů" => "prehled_obedu.php",
         "Seznam jídelen" => "prehled_jidelen.php",
-        "Odhlášení"=> "logout.php",
+        "Odhlášení"=> "php_skripty/logout.php",
     ];
 } else {
     // ak je uzivatel odhlaseny bude sa zobrazovat toto menu
