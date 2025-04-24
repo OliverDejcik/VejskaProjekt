@@ -5,10 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Seznam obědů</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php include '../php_skripty/navbar.php'; ?>
+    <?php include 'php_skripty/navbar.php'; ?>
     
     <form action="action_page.php" method="post">
     <div class="container">
