@@ -10,6 +10,7 @@ if (isset($_SESSION["user_id"])) {
         "Seznam obědů" => "prehled_obedu.php",
         "Seznam jídelen" => "prehled_jidelen.php",
         "Odhlášení"=> "php_skripty/logout.php",
+        "Přidat recenzi"=> "recenze_form.php",
     ];
 } else {
     // ak je uzivatel odhlaseny bude sa zobrazovat toto menu
