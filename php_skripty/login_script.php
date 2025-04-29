@@ -22,11 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../index.php");
             exit();
         } else {
-            header("Location: ../php_stranky/login.php?error=Nesprávné heslo");
+            header("Location: ../login.php?error=Nesprávné heslo");
             exit();
         }
     } else {
-        header("Location: ../php_stranky/login.php?error=Uživatel nenalezen");
+        header("Location: ../login.php?error=Uživatel nenalezen");
         exit();
     }
 } else {

@@ -22,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_review'])) {
     $stmt->bind_param("iisi", $user_id, $obed_id, $popis, $hodnotenie);
 
     if ($stmt->execute()) {
+        echo "Recenze zaznamenána";
+        
         header("Location: ../recenze_form.php?success=1");
         exit;
     } else {
