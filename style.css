@@ -92,6 +92,7 @@ textarea {
 
 /* Star rating styling */
 .rating {
+    margin-left: 0;
     text-align: left;
     overflow: hidden;
     clear: both;
@@ -107,7 +108,7 @@ textarea {
     color: #ccc;
     cursor: pointer;
     transition: color 0.2s;
-    float: left;
+    float: right;
     padding: 0 5px;
 }
 
