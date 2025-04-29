@@ -9,7 +9,6 @@ if (isset($_SESSION["user_id"])) {
         "Seznam recenzí" => "prehled_recenzi.php",
         "Seznam obědů" => "prehled_obedu.php",
         "Seznam jídelen" => "prehled_jidelen.php",
-        "Odhlášení"=> "php_skripty/logout.php",
         "Přidat recenzi"=> "recenze_form.php",
     ];
 } else {
@@ -29,6 +28,9 @@ if (isset($_SESSION["user_id"])) {
 echo '<nav>';
 foreach ($pages as $name => $url) {
     echo "<a href=\"$url\">$name</a>";
+}
+if (isset($_SESSION["user_id"])) {
+    echo "<span> <a href='php_skripty/logout.php'>Odhlášení</a></span>";
 }
 echo '</nav>';
 ?>
