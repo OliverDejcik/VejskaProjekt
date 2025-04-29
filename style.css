@@ -61,7 +61,7 @@ h3 {
 }
 
 /* Form elements */
-input[type="text"] {
+.review-form input[type="text"] {
     width: 80%;
     padding: 10px;
     font-size: 16px;
