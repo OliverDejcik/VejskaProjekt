@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_id'])) {
                 echo '<input type="hidden" name="obed_id" value="' . $row["obed_id"] . '">';
 
                 echo '<div class="rating">';
-                for ($i = 1; $i <= 5; $i++) {
+                for ($i = 5; $i >= 1; $i--) {
                     echo '<input type="radio" id="star' . $i . '_' . $row["obed_id"] . '" name="hodnotenie" value="' . $i . '" required>';
                     echo '<label for="star' . $i . '_' . $row["obed_id"] . '">&#9733;</label>';
                 }
