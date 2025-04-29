@@ -51,7 +51,7 @@ if (!isset($_SESSION['user_id'])) {
                 }
                 echo '</div>';
 
-                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required></textarea>';
+                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required ;></textarea>';
                 echo '<button type="submit" name="submit_review">Odoslať recenziu</button>';
                 echo '</form>';
                 echo '</div>';
