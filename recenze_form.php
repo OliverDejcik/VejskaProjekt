@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_id'])) {
     <h2>Vyhľadaj obed</h2>
     <form action="recenze_form.php" method="post">
         <input type="text" name="search" placeholder="Zadaj názov obedu" required>
-        <button type="submit" name="search_btn">Vyhľadať</button>
+        <button class="Search" type="submit" name="search_btn">Vyhľadať</button>
     </form>
 
     <?php
