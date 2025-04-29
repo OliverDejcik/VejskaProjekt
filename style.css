@@ -176,5 +176,8 @@ a button {
 }
 
 nav span {
+    display: flex;
     margin-left: auto;
+    gap: 20px;
 }
+

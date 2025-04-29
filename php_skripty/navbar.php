@@ -15,8 +15,6 @@ if (isset($_SESSION["user_id"])) {
     // ak je uzivatel odhlaseny bude sa zobrazovat toto menu
     $pages = [
         "Hlavní stránka" => "index.php",
-        "Přihlášení" => "login.php",
-        "Registrace" => "register.php",
         "Seznam recenzí" => "prehled_recenzi.php",
         "Seznam obědů" => "prehled_obedu.php",
         "Seznam jídelen" => "prehled_jidelen.php",
@@ -31,6 +29,9 @@ foreach ($pages as $name => $url) {
 }
 if (isset($_SESSION["user_id"])) {
     echo "<span> <a href='php_skripty/logout.php'>Odhlášení</a></span>";
+}else{
+    echo "<span> <a href='login.php'>Přihlášení</a>
+    <a href='register.php'>Registrace</a></span>";
 }
 echo '</nav>';
 ?>
