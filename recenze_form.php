@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <?php include 'php_skripty/navbar.php'; ?>
 
 <div class="review-form">
@@ -38,20 +39,22 @@ if (!isset($_SESSION['user_id'])) {
             echo '<h3>Výsledky hľadania:</h3><ul>';
             while ($row = $results->fetch_assoc()) {
                 echo '<li>';
+                echo '<div class="review-box">';
                 echo '<strong>' . htmlspecialchars($row["nazev_obedu"]) . '</strong>';
                 echo '<form action="php_skripty/pridat_recenzi.php" method="post">';
                 echo '<input type="hidden" name="obed_id" value="' . $row["obed_id"] . '">';
-                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required></textarea>';
 
                 echo '<div class="rating">';
-                for ($i = 0; $i <= 5; $i++) {
+                for ($i = 1; $i <= 5; $i++) {
                     echo '<input type="radio" id="star' . $i . '_' . $row["obed_id"] . '" name="hodnotenie" value="' . $i . '" required>';
-                    echo '<label for="star' . $i . '_' . $row["obed_id"] . '">' . $i . '</label>';
+                    echo '<label for="star' . $i . '_' . $row["obed_id"] . '">&#9733;</label>';
                 }
                 echo '</div>';
 
+                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required></textarea>';
                 echo '<button type="submit" name="submit_review">Odoslať recenziu</button>';
                 echo '</form>';
+                echo '</div>';
                 echo '</li>';
             }
             echo '</ul>';
@@ -61,5 +64,6 @@ if (!isset($_SESSION['user_id'])) {
     }
     ?>
 </div>
+
 </body>
 </html>
