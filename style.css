@@ -262,3 +262,41 @@ input:invalid {
 input:valid {
     border: 1px solid #ccc;
 }
+
+/* obedy stranka css: */
+.obedy-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.obedy-list li {
+    margin: 8px 0;
+}
+
+.obedy-list a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.obedy-list a:hover {
+    text-decoration: underline;
+}
+
+.review-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #fafafa;
+}
+
+.rating .star {
+    font-size: 24px;
+    color: #ccc;
+    margin-right: 4px;
+}
+
+.rating .star.filled {
+    color: gold;
+}
