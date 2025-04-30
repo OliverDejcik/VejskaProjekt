@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
         // Tlačidlo na zobrazenie recenzií
         echo '<form method="post">';
         echo '<input type="hidden" name="obed_id" value="' . $obed_id . '">';
-        echo '<button type="submit" name="zobraz_recenze">Zobraziť recenzie k tomuto obedu</button>';
+        echo '<button class="Search" type="submit" name="zobraz_recenze">Zobraziť recenzie k tomuto obedu</button>';
         echo '</form>';
 
         // Ak sa kliklo na tlačidlo pre tento obed, vypíšeme recenzie
@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
                 while ($r = $recenzie->fetch_assoc()) {
                     echo "<li>";
                     echo "<strong>" . htmlspecialchars($r['osobni_cislo']) . "</strong> – ";
-                    echo "<em>" . $r['hodnoceni'] . "/5</em><br>";
+                    echo "<em> Hodnocení:" . $r['hodnoceni'] . "&#9733</em><br>";
                     echo "<p>" . nl2br(htmlspecialchars($r['text_recenze'])) . "</p>";
                     echo "<small>Pridané: " . $r['created_at'] . "</small>";
                     echo "</li><hr>";

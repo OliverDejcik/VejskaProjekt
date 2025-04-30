@@ -265,38 +265,17 @@ input:valid {
 
 /* obedy stranka css: */
 .obedy-list {
-    list-style: none;
-    padding-left: 0;
+    list-style-type: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .obedy-list li {
-    margin: 8px 0;
-}
-
-.obedy-list a {
-    color: #007BFF;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.obedy-list a:hover {
-    text-decoration: underline;
-}
-
-.review-box {
+    background-color: #ffffff;
     border: 1px solid #ddd;
+    border-radius: 12px;
     padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    background-color: #fafafa;
-}
-
-.rating .star {
-    font-size: 24px;
-    color: #ccc;
-    margin-right: 4px;
-}
-
-.rating .star.filled {
-    color: gold;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
