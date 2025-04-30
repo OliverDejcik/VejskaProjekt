@@ -11,7 +11,7 @@
     <?php include 'php_skripty/navbar.php'; ?>
     
     <form action="php_skripty/register_skript.php" method="post">
-    <div class="container">
+    <div class="register-box">
         <label for="uname"><b>Zadejte osobní číslo:</b></label>
         <input type="text" placeholder="Osobní číslo" name="uname" required
         pattern="^[A-Z]{3}[0-9]{4}$" title="Zadejte 3 velká písmena a 4 čísla, například: NOV0012">

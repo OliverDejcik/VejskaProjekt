@@ -30,6 +30,7 @@ nav button {
 
 nav button:hover {
     background-color: #5dade2;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 
 }
 
@@ -126,14 +127,17 @@ button.Search {
     color: white;
     border: none;
     border-radius: 5px;
+
 }
 
 button.Search:hover {
     background-color: #219150;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .review-box button:hover {
     background-color: #219150;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .review-box textarea {
     width: 100%;
@@ -143,6 +147,8 @@ button.Search:hover {
     resize: none;
     margin-bottom: 10px;
     font-size: 1em;
+    border-radius: 5px;
+    border: 2px solid #949494;
   }
 
 
@@ -178,12 +184,12 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Button links */
+/* Button links  vůbec nevím proč to tu je a bojím se to smazat*/
 a button {
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #0077cc;
+    background-color: #000000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -194,4 +200,65 @@ nav span {
     margin-left: auto;
     gap: 0.5em;
 }
+.review-box button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
 
+.register-box {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-box label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.register-box input, .container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.register-box select {
+    height: 40px;
+}
+
+.register-box button {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.register-box button:hover {
+    background-color: #1a252f;
+}
+
+/* Style for validation messages */
+input:invalid {
+    border: 1px solid #ff6b6b;
+}
+
+input:valid {
+    border: 1px solid #ccc;
+}
