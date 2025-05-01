@@ -19,6 +19,27 @@ if (!isset($_SESSION['user_id'])) {
 <?php include 'php_skripty/navbar.php'; ?>
 
 <div class="review-form">
+    <?php
+    if (isset($_GET['success']) && $_GET['success'] == 1) {
+        echo "<p class='success'>Recenzia bola úspešne pridaná.</p>";
+    }
+    if (isset($_GET['error'])) {
+        switch ($_GET['error']) {
+            case 'uz_si_hodnotil':
+                echo "<p class='error'>Tento obed si už hodnotil. Môžeš pridať len jednu recenziu.</p>";
+                break;
+            case 'neplatne_udaje':
+                echo "<p class='error'>Neplatné údaje. Skontroluj hodnotenie a popis.</p>";
+                break;
+            case 'neprihlaseny':
+                echo "<p class='error'>Musíš sa prihlásiť.</p>";
+                break;
+            default:
+                echo "<p class='error'>Chyba: " . htmlspecialchars($_GET['error']) . "</p>";
+        }
+    }
+    ?>
+
     <h2>Vyhľadaj obed</h2>
     <form action="recenze_form.php" method="post">
         <input type="text" name="search" placeholder="Zadaj názov obedu" required>
@@ -51,7 +72,7 @@ if (!isset($_SESSION['user_id'])) {
                 }
                 echo '</div>';
 
-                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required ;></textarea>';
+                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required></textarea>';
                 echo '<button type="submit" name="submit_review">Odoslať recenziu</button>';
                 echo '</form>';
                 echo '</div>';

@@ -15,26 +15,42 @@ include 'php_skripty/connection.php';
 
 <h2>Zoznam obedov podľa hodnotenia</h2>
 
+<!-- Vyhľadávací formulár -->
+<form method="post">
+    <input type="text" name="search" placeholder="Vyhľadaj obed..." value="<?php echo isset($_POST['search']) ? htmlspecialchars($_POST['search']) : ''; ?>">
+    <button type="submit" name="search_btn">Hľadať</button>
+</form>
+
 <ul class="obedy-list">
 <?php
-// Získanie obedov podľa priemerného hodnotenia
-$sql = "
-    SELECT o.obed_id, o.nazev_obedu, 
-        ROUND(AVG(r.hodnoceni), 2) AS prumer_hodnoceni
-    FROM obedy o
-    LEFT JOIN recenze r ON o.obed_id = r.obed_id
-    GROUP BY o.obed_id
-    ORDER BY prumer_hodnoceni DESC
-";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search_btn'])) {
+    $search = trim($_POST['search']);
+    $like = '%' . $search . '%';
 
-$result = $conn->query($sql);
+    $stmt = $conn->prepare("
+        SELECT obed_id, nazev_obedu, hodnoceni
+        FROM obedy
+        WHERE nazev_obedu LIKE ?
+        ORDER BY hodnoceni DESC
+    ");
+    $stmt->bind_param("s", $like);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $sql = "
+        SELECT obed_id, nazev_obedu, hodnoceni
+        FROM obedy
+        ORDER BY hodnoceni DESC
+    ";
+    $result = $conn->query($sql);
+}
 
-if ($result->num_rows > 0) {
+if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $obed_id = $row['obed_id'];
         echo "<li>";
         echo "<strong>" . htmlspecialchars($row['nazev_obedu']) . "</strong><br>";
-        echo "Priemerné hodnotenie: " . ($row['prumer_hodnoceni'] !== null ? $row['prumer_hodnoceni'] : "Žiadne hodnotenie") . "<br>";
+        echo "Priemerné hodnotenie: " . ($row['hodnoceni'] !== null ? $row['hodnoceni'] : "Žiadne hodnotenie") . "<br>";
         
         // Tlačidlo na zobrazenie recenzií
         echo '<form method="post">';
@@ -42,18 +58,18 @@ if ($result->num_rows > 0) {
         echo '<button class="Search" type="submit" name="zobraz_recenze">Zobraziť recenzie k tomuto obedu</button>';
         echo '</form>';
 
-        // Ak sa kliklo na tlačidlo pre tento obed, vypíšeme recenzie
+        // Zobrazenie recenzií
         if (isset($_POST['zobraz_recenze']) && $_POST['obed_id'] == $obed_id) {
-            $stmt = $conn->prepare("
+            $stmtRec = $conn->prepare("
                 SELECT r.text_recenze, r.hodnoceni, r.created_at, u.osobni_cislo
                 FROM recenze r
                 JOIN users u ON r.user_id = u.user_id
                 WHERE r.obed_id = ?
-                ORDER BY r.created_at DESC
+                ORDER BY r.created_at DESC, r.recenze_id DESC
             ");
-            $stmt->bind_param("i", $obed_id);
-            $stmt->execute();
-            $recenzie = $stmt->get_result();
+            $stmtRec->bind_param("i", $obed_id);
+            $stmtRec->execute();
+            $recenzie = $stmtRec->get_result();
 
             echo "<div class='recenzie'>";
             if ($recenzie->num_rows > 0) {
@@ -61,7 +77,7 @@ if ($result->num_rows > 0) {
                 while ($r = $recenzie->fetch_assoc()) {
                     echo "<li>";
                     echo "<strong>" . htmlspecialchars($r['osobni_cislo']) . "</strong> – ";
-                    echo "<em> Hodnocení:" . $r['hodnoceni'] . "&#9733</em><br>";
+                    echo "<em> Hodnocení: " . $r['hodnoceni'] . " &#9733;</em><br>";
                     echo "<p>" . nl2br(htmlspecialchars($r['text_recenze'])) . "</p>";
                     echo "<small>Pridané: " . $r['created_at'] . "</small>";
                     echo "</li><hr>";
@@ -72,7 +88,7 @@ if ($result->num_rows > 0) {
             }
             echo "</div>";
 
-            $stmt->close();
+            $stmtRec->close();
         }
 
         echo "</li><hr>";
