@@ -31,6 +31,9 @@ foreach ($pages as $name => $url) {
 
 if (isset($_SESSION["user_id"])) {
     echo '<span>';
+    echo '<form method="post" action="php_skripty/profil.php" style="display:inline;">';
+    echo '<button type="submit">Zobrazit Profil</button>';
+    echo '</form>';
     echo '<form method="post" action="php_skripty/logout.php" style="display:inline;">';
     echo '<button type="submit">Odhlášení</button>';
     echo '</form>';

@@ -13,13 +13,17 @@ include 'php_skripty/connection.php';
 <body>
 <?php include 'php_skripty/navbar.php'; ?>
 
-<h2>Zoznam obedov podľa hodnotenia</h2>
+
 
 <!-- Vyhľadávací formulár -->
+<div class="review-form">
+<h2>Zoznam obedov podľa hodnotenia</h2>
 <form method="post">
     <input type="text" name="search" placeholder="Vyhľadaj obed..." value="<?php echo isset($_POST['search']) ? htmlspecialchars($_POST['search']) : ''; ?>">
-    <button type="submit" name="search_btn">Hľadať</button>
+    <button class="Search" type="submit" name="search_btn">Vyhľadať</button>
 </form>
+</div>
+
 
 <ul class="obedy-list">
 <?php
