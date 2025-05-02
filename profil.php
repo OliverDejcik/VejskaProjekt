@@ -36,24 +36,46 @@ $stmt->close();
     <p><strong>Role:</strong> <?= htmlspecialchars($user['role']) ?></p>
 
     <form method="post">
-        <button type="submit" name="zmenit_heslo">Změnit heslo</button>
-        <button type="submit" name="moje_recenze">Zobrazit moje recenze</button>
+        <button class="Search" type="submit" name="zmenit_heslo">Změnit heslo</button>
+        <button class="Search" type="submit" name="moje_recenze">Zobrazit moje recenze</button>
     </form>
 
     <?php
-    if (isset($_POST['moje_recenze'])) {
-        $reviews_stmt = $conn->prepare("
-            SELECT r.recenze_id, r.text_recenze, r.hodnoceni, r.created_at, o.nazev_obedu
-            FROM recenze r
-            JOIN obedy o ON r.obed_id = o.obed_id
-            WHERE r.user_id = ?
-            ORDER BY r.created_at DESC
-        ");
-        $reviews_stmt->bind_param("i", $user_id);
-        $reviews_stmt->execute();
-        $reviews_result = $reviews_stmt->get_result();
+    if (isset($_POST['moje_recenze']) || isset($_POST['search_recenze'])) {
+        $searchTerm = isset($_POST['search_text']) ? trim($_POST['search_text']) : '';
 
         echo "<h3>Moje recenze:</h3>";
+
+        // Vyhľadávací formulár
+        echo '<form method="post">';
+        echo '<input type="text" name="search_text" placeholder="Vyhľadaj podľa názvu jedla..." value="' . htmlspecialchars($searchTerm) . '">';
+        echo '<button class="Search" type="submit" name="search_recenze">Hľadať</button>';
+        echo '<input type="hidden" name="moje_recenze" value="1">';
+        echo '</form><br>';
+
+        if (!empty($searchTerm)) {
+            $like = '%' . $searchTerm . '%';
+            $reviews_stmt = $conn->prepare("
+                SELECT r.recenze_id, r.text_recenze, r.hodnoceni, r.created_at, o.nazev_obedu
+                FROM recenze r
+                JOIN obedy o ON r.obed_id = o.obed_id
+                WHERE r.user_id = ? AND o.nazev_obedu LIKE ?
+                ORDER BY r.created_at DESC
+            ");
+            $reviews_stmt->bind_param("is", $user_id, $like);
+        } else {
+            $reviews_stmt = $conn->prepare("
+                SELECT r.recenze_id, r.text_recenze, r.hodnoceni, r.created_at, o.nazev_obedu
+                FROM recenze r
+                JOIN obedy o ON r.obed_id = o.obed_id
+                WHERE r.user_id = ?
+                ORDER BY r.created_at DESC
+            ");
+            $reviews_stmt->bind_param("i", $user_id);
+        }
+
+        $reviews_stmt->execute();
+        $reviews_result = $reviews_stmt->get_result();
 
         if ($reviews_result->num_rows > 0) {
             echo "<ul>";
@@ -66,7 +88,7 @@ $stmt->close();
 
                 echo '<form method="post" action="php_skripty/smazat_recenzi.php" onsubmit="return confirm(\'Opravdu chcete smazat tuto recenzi?\')">';
                 echo '<input type="hidden" name="recenze_id" value="' . $row['recenze_id'] . '">';
-                echo '<button type="submit" name="smazat_recenzi">Smazat</button>';
+                echo '<button class="Remove" type="submit" name="smazat_recenzi">Smazat</button>';
                 echo '</form>';
 
                 echo "</li><hr>";
