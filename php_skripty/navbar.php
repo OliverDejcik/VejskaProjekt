@@ -8,7 +8,6 @@ if (isset($_SESSION["user_id"])) {
     $pages = [
         "Hlavní stránka" => "index.php",
         "Seznam recenzí" => "prehled_recenzi.php",
-        "Seznam obědů" => "prehled_obedu.php",
         "Seznam jídelen" => "prehled_jidelen.php",
         "Přidat recenzi" => "recenze_form.php",
     ];
@@ -16,8 +15,7 @@ if (isset($_SESSION["user_id"])) {
     // ak je uzivatel odhlaseny bude sa zobrazovat toto menu
     $pages = [
         "Hlavní stránka" => "index.php",
-        "Seznam recenzí" => "prehled_recenzi.php",
-        "Seznam obědů" => "prehled_obedu.php",
+        "Seznam obedu" => "prehled_recenzi.php",
         "Seznam jídelen" => "prehled_jidelen.php",
     ];
 }
@@ -31,7 +29,7 @@ foreach ($pages as $name => $url) {
 
 if (isset($_SESSION["user_id"])) {
     echo '<span>';
-    echo '<form method="post" action="php_skripty/profil.php" style="display:inline;">';
+    echo '<form method="post" action="profil.php" style="display:inline;">';
     echo '<button type="submit">Zobrazit Profil</button>';
     echo '</form>';
     echo '<form method="post" action="php_skripty/logout.php" style="display:inline;">';
