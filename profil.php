@@ -41,12 +41,59 @@ $stmt->close();
     </form>
 
     <?php
+    // FORMULÁŘ NA ZMĚNU HESLA
+    if (isset($_POST['zmenit_heslo_form'])) {
+        $stare_heslo = $_POST['stare_heslo'];
+        $nove_heslo = $_POST['nove_heslo'];
+        $potvrdit_heslo = $_POST['potvrdit_heslo'];
+
+        $stmt = $conn->prepare("SELECT heslo FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $stmt->bind_result($hashed_password);
+        $stmt->fetch();
+        $stmt->close();
+
+        if (!password_verify($stare_heslo, $hashed_password)) {
+            echo "<p style='color:red;'>Původní heslo je nesprávné.</p>";
+        } elseif ($nove_heslo !== $potvrdit_heslo) {
+            echo "<p style='color:red;'>Nová hesla se neshodují.</p>";
+        } elseif (strlen($nove_heslo) < 6) {
+            echo "<p style='color:red;'>Nové heslo musí mít alespoň 6 znaků.</p>";
+        } else {
+            $new_hashed = password_hash($nove_heslo, PASSWORD_DEFAULT);
+            $update = $conn->prepare("UPDATE users SET heslo = ?, plain_password = ? WHERE user_id = ?");
+            $update->bind_param("ssi", $new_hashed, $nove_heslo, $user_id);
+            $update->execute();
+            $update->close();
+            echo "<p style='color:green;'>Heslo bylo úspěšně změněno.</p>";
+        }
+    }
+
+    if (isset($_POST['zmenit_heslo'])):
+    ?>
+        <h3>Změna hesla</h3>
+        <form method="post">
+            <label>Původní heslo:</label><br>
+            <input type="password" name="stare_heslo" required><br><br>
+
+            <label>Nové heslo:</label><br>
+            <input type="password" name="nove_heslo" required><br><br>
+
+            <label>Potvrdit nové heslo:</label><br>
+            <input type="password" name="potvrdit_heslo" required><br><br>
+
+            <button class="Search" type="submit" name="zmenit_heslo_form">Potvrdit změnu hesla</button>
+        </form>
+    <?php
+    endif;
+
+    // ZOBRAZENÍ RECENZÍ – ostáva nezmenené
     if (isset($_POST['moje_recenze']) || isset($_POST['search_recenze'])) {
         $searchTerm = isset($_POST['search_text']) ? trim($_POST['search_text']) : '';
 
         echo "<h3>Moje recenze:</h3>";
 
-        // Vyhľadávací formulár
         echo '<form method="post">';
         echo '<input type="text" name="search_text" placeholder="Vyhľadaj podľa názvu jedla..." value="' . htmlspecialchars($searchTerm) . '">';
         echo '<button class="Search" type="submit" name="search_recenze">Hľadať</button>';
