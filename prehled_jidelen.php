@@ -9,7 +9,7 @@
     <?php include 'php_skripty/navbar.php'; ?>
 
     <div class="container">
-        <h2>Přehled obědů</h2>
+        <h2>Přehled jídelen</h2>
         <?php include 'php_skripty/vypis_jidelen.php'; ?>
     </div>
 </body>

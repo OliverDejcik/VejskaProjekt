@@ -15,7 +15,7 @@ if (isset($_SESSION["user_id"])) {
     // ak je uzivatel odhlaseny bude sa zobrazovat toto menu
     $pages = [
         "Hlavní stránka" => "index.php",
-        "Seznam obedu" => "prehled_recenzi.php",
+        "Seznam recenzí" => "prehled_recenzi.php",
         "Seznam jídelen" => "prehled_jidelen.php",
     ];
 }
