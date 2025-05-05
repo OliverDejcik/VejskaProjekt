@@ -21,18 +21,18 @@ if (!isset($_SESSION['user_id'])) {
 <div class="review-form">
     <?php
     if (isset($_GET['success']) && $_GET['success'] == 1) {
-        echo "<p class='success'>Recenzia bola úspešne pridaná.</p>";
+        echo "<p class='success'>Recenze byla přidána</p>";
     }
     if (isset($_GET['error'])) {
         switch ($_GET['error']) {
             case 'uz_si_hodnotil':
-                echo "<p class='error'>Tento obed si už hodnotil. Môžeš pridať len jednu recenziu.</p>";
+                echo "<p class='error'>Tenhle oběd si už hodnotil</p>";
                 break;
             case 'neplatne_udaje':
-                echo "<p class='error'>Neplatné údaje. Skontroluj hodnotenie a popis.</p>";
+                echo "<p class='error'>Neplatné údaje. Zkontroluj hodnocení a popis.</p>";
                 break;
             case 'neprihlaseny':
-                echo "<p class='error'>Musíš sa prihlásiť.</p>";
+                echo "<p class='error'>Musíš se přihlásit.</p>";
                 break;
             default:
                 echo "<p class='error'>Chyba: " . htmlspecialchars($_GET['error']) . "</p>";
@@ -40,10 +40,10 @@ if (!isset($_SESSION['user_id'])) {
     }
     ?>
 
-    <h2>Vyhľadaj obed</h2>
+    <h2>Vyhledej oběd</h2>
     <form action="recenze_form.php" method="post">
-        <input type="text" name="search" placeholder="Zadaj názov obedu" required>
-        <button class="Search" type="submit" name="search_btn">Vyhľadať</button>
+        <input type="text" name="search" placeholder="Zadej název obědu" required>
+        <button class="Search" type="submit" name="search_btn">Vyhledat</button>
     </form>
 
     <?php
@@ -57,7 +57,7 @@ if (!isset($_SESSION['user_id'])) {
         $results = $stmt->get_result();
 
         if ($results->num_rows > 0) {
-            echo '<h3>Výsledky hľadania:</h3><ul>';
+            echo '<h3>Výsledky hledáni:</h3><ul>';
             while ($row = $results->fetch_assoc()) {
                 echo '<li>';
                 echo '<div class="review-box">';
@@ -72,8 +72,8 @@ if (!isset($_SESSION['user_id'])) {
                 }
                 echo '</div>';
 
-                echo '<textarea name="popis" placeholder="Napíš recenziu..." minlength="20" required></textarea>';
-                echo '<button type="submit" name="submit_review">Odoslať recenziu</button>';
+                echo '<textarea name="popis" placeholder="Napíš recenzi..." minlength="20" required></textarea>';
+                echo '<button type="submit" name="submit_review">Odeslat recenzi</button>';
                 echo '</form>';
                 echo '</div>';
                 echo '</li>';

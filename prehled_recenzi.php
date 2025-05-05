@@ -7,7 +7,7 @@ include 'php_skripty/connection.php';
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Prehľad obedov</title>
+    <title>PŘehled recenzí</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,9 +17,9 @@ include 'php_skripty/connection.php';
 
 <!-- Vyhľadávací formulár -->
 <div class="review-form">
-<h2>Zoznam obedov podľa hodnotenia</h2>
+<h2>Seznam obědů</h2>
 <form method="post">
-    <input type="text" name="search" placeholder="Vyhľadaj obed..." value="<?php echo isset($_POST['search']) ? htmlspecialchars($_POST['search']) : ''; ?>">
+    <input type="text" name="search" placeholder="Vyhledej oběd..." value="<?php echo isset($_POST['search']) ? htmlspecialchars($_POST['search']) : ''; ?>">
     <button class="Search" type="submit" name="search_btn">Vyhľadať</button>
 </form>
 </div>
@@ -54,12 +54,12 @@ if ($result && $result->num_rows > 0) {
         $obed_id = $row['obed_id'];
         echo "<li>";
         echo "<strong>" . htmlspecialchars($row['nazev_obedu']) . "</strong><br>";
-        echo "Priemerné hodnotenie: " . ($row['hodnoceni'] !== null ? $row['hodnoceni'] : "Žiadne hodnotenie") . "<br>";
+        echo "Průměrné hodnocení: " . ($row['hodnoceni'] !== null ? $row['hodnoceni'] : "Žiadne hodnotenie") . "<br>";
         
         // Tlačidlo na zobrazenie recenzií
         echo '<form method="post">';
         echo '<input type="hidden" name="obed_id" value="' . $obed_id . '">';
-        echo '<button class="Search" type="submit" name="zobraz_recenze">Zobraziť recenzie k tomuto obedu</button>';
+        echo '<button class="Search" type="submit" name="zobraz_recenze">Zobrazit recenze k tomuto obědu</button>';
         echo '</form>';
 
         // Zobrazenie recenzií
@@ -83,12 +83,12 @@ if ($result && $result->num_rows > 0) {
                     echo "<strong>" . htmlspecialchars($r['osobni_cislo']) . "</strong> – ";
                     echo "<em> Hodnocení: " . $r['hodnoceni'] . " &#9733;</em><br>";
                     echo "<p>" . nl2br(htmlspecialchars($r['text_recenze'])) . "</p>";
-                    echo "<small>Pridané: " . $r['created_at'] . "</small>";
+                    echo "<small>Přidáno: " . $r['created_at'] . "</small>";
                     echo "</li><hr>";
                 }
                 echo "</ul>";
             } else {
-                echo "<p>Žiadne recenzie k tomuto obedu.</p>";
+                echo "<p>Zatím nejsou žádne recenze k tomuto obědu</p>";
             }
             echo "</div>";
 
@@ -98,7 +98,7 @@ if ($result && $result->num_rows > 0) {
         echo "</li><hr>";
     }
 } else {
-    echo "<p>Žiadne obedy sa nenašli.</p>";
+    echo "<p>Žádné obědy se nenašli</p>";
 }
 
 $conn->close();
