@@ -4,7 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (isset($_SESSION["user_id"])) {
-    // ak je uzivatel prihlaseny bude sa zobrazovat toto menu
     $pages = [
         "Hlavní stránka" => "index.php",
         "Seznam recenzí" => "prehled_recenzi.php",
@@ -12,7 +11,6 @@ if (isset($_SESSION["user_id"])) {
         "Přidat recenzi" => "recenze_form.php",
     ];
 } else {
-    // ak je uzivatel odhlaseny bude sa zobrazovat toto menu
     $pages = [
         "Hlavní stránka" => "index.php",
         "Seznam recenzí" => "prehled_recenzi.php",

@@ -15,7 +15,6 @@ include 'php_skripty/connection.php';
 
 
 
-<!-- Vyhľadávací formulár -->
 <div class="review-form">
 <h2>Seznam obědů</h2>
 <form method="post">
@@ -56,13 +55,11 @@ if ($result && $result->num_rows > 0) {
         echo "<strong>" . htmlspecialchars($row['nazev_obedu']) . "</strong><br>";
         echo "Průměrné hodnocení: " . ($row['hodnoceni'] !== null ? $row['hodnoceni'] : "Žiadne hodnotenie") . "<br>";
         
-        // Tlačidlo na zobrazenie recenzií
         echo '<form method="post">';
         echo '<input type="hidden" name="obed_id" value="' . $obed_id . '">';
         echo '<button class="Search" type="submit" name="zobraz_recenze">Zobrazit recenze k tomuto obědu</button>';
         echo '</form>';
 
-        // Zobrazenie recenzií
         if (isset($_POST['zobraz_recenze']) && $_POST['obed_id'] == $obed_id) {
             $stmtRec = $conn->prepare("
                 SELECT r.text_recenze, r.hodnoceni, r.created_at, u.osobni_cislo

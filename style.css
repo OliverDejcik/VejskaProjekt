@@ -1,4 +1,3 @@
-/* General styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +5,6 @@ body {
     background-color: #f9f9f9;
 }
 
-/* Navigation */
 nav {
     background-color: #34495e;
     display: flex;
@@ -25,7 +23,7 @@ nav button {
     font-weight: bold;
     cursor: pointer;
     font-size: 1em;
-    height: 3em; /* Pridané */
+    height: 3em;
 }
 
 nav button:hover {
@@ -37,14 +35,12 @@ nav button:hover {
 
 
 
-/* Container and layout */
 .container {
     max-width: 960px;
     margin: 0 auto;
     padding: 30px;
 }
 
-/* Headings */
 h1 {
     color: #333;
 }
@@ -54,7 +50,6 @@ h3 {
     margin-bottom: 15px;
 }
 
-/* Review form container */
 .review-form {
     max-width: 700px;
     margin: 40px auto;
@@ -73,20 +68,18 @@ h3 {
     margin-bottom: 30px;
 }
 
-/* Form elements */
 .review-form input[type="text"] {
     width: 80%;
     padding: 10px;
     font-size: 16px;
 }
 
-/* Star rating styling */
 .rating {
     text-align: left;
     overflow: hidden;
     clear: both;
     margin: 15px 0;
-    direction: rtl; /* vykresľovanie hviezd sprava doľava */
+    direction: rtl;
     display: inline-flex;
     gap: 5px;
 }
@@ -110,7 +103,6 @@ h3 {
     color: gold;
 }
 
-/* Review display area */
 .review-box {
     align-self: left;
     border: 1px solid #ddd;
@@ -175,7 +167,6 @@ li {
     margin-bottom: 20px;
 }
 
-/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -198,7 +189,6 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Button links  vůbec nevím proč to tu je a bojím se to smazat*/
 a button {
     padding: 10px 15px;
     font-size: 16px;
@@ -268,7 +258,6 @@ nav span {
     background-color: #1a252f;
 }
 
-/* Style for validation messages */
 input:invalid {
     border: 1px solid #ff6b6b;
 }
@@ -277,7 +266,6 @@ input:valid {
     border: 1px solid #ccc;
 }
 
-/* obedy stranka css: */
 .obedy-list {
     list-style-type: none;
     padding: 0;

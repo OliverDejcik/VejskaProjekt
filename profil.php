@@ -9,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Načtení informací o uživateli
 $stmt = $conn->prepare("SELECT skolni_email, jmeno, prijmeni, role FROM users WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -41,7 +40,6 @@ $stmt->close();
     </form>
 
     <?php
-    // FORMULÁŘ NA ZMĚNU HESLA
     if (isset($_POST['zmenit_heslo_form'])) {
         $stare_heslo = $_POST['stare_heslo'];
         $nove_heslo = $_POST['nove_heslo'];
@@ -62,8 +60,8 @@ $stmt->close();
             echo "<p style='color:red;'>Nové heslo musí mít alespoň 6 znaků.</p>";
         } else {
             $new_hashed = password_hash($nove_heslo, PASSWORD_DEFAULT);
-            $update = $conn->prepare("UPDATE users SET heslo = ?, plain_password = ? WHERE user_id = ?");
-            $update->bind_param("ssi", $new_hashed, $nove_heslo, $user_id);
+            $update = $conn->prepare("UPDATE users SET heslo = ? WHERE user_id = ?");
+            $update->bind_param("si", $new_hashed, $user_id);
             $update->execute();
             $update->close();
             echo "<p style='color:green;'>Heslo bylo úspěšně změněno.</p>";
@@ -88,7 +86,6 @@ $stmt->close();
     <?php
     endif;
 
-    // ZOBRAZENÍ RECENZÍ – ostáva nezmenené
     if (isset($_POST['moje_recenze']) || isset($_POST['search_recenze'])) {
         $searchTerm = isset($_POST['search_text']) ? trim($_POST['search_text']) : '';
 

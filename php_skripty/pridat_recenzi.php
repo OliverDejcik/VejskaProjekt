@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_review'])) {
         exit;
     }
 
-    // Kontrola, či už existuje recenzia pre tento obed od tohto používateľa
     $check_stmt = $conn->prepare("SELECT * FROM recenze WHERE user_id = ? AND obed_id = ?");
     $check_stmt->bind_param("ii", $user_id, $obed_id);
     $check_stmt->execute();
@@ -30,12 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_review'])) {
     }
     $check_stmt->close();
 
-    // Vloženie novej recenzie
     $stmt = $conn->prepare("INSERT INTO recenze (user_id, obed_id, text_recenze, hodnoceni, created_at) VALUES (?, ?, ?, ?, NOW())");
     $stmt->bind_param("iisi", $user_id, $obed_id, $popis, $hodnotenie);
 
     if ($stmt->execute()) {
-        // Prepočet priemeru
         include 'vypocitat_priemer.php';
         aktualizujPriemerHodnotenia($obed_id, $conn);
 
@@ -47,8 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_review'])) {
         exit;
     }
 
-    $stmt->close();
-    $conn->close();
 } else {
     header("Location: ../recenze_form.php?error=neplatny_pristup");
     exit;

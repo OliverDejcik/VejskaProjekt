@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Recenze Obědů</title>
     <link rel="stylesheet" href="style.css">
-    <!DOCTYPE html>
-<html lang="cs">
+</head>
 <body>
 
     <?php include 'php_skripty/navbar.php'; ?>

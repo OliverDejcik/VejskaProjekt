@@ -1,65 +1,47 @@
-# 🍽️ Systém na hodnotenie a prehľadávanie jedál v menze
+# 🍽️ Recenzie obedov
 
-Semestrálny projekt do predmetu Databázové systémy. Cieľom projektu je navrhnúť a implementovať relačnú databázu, ktorá umožňuje študentom a zamestnancom prehliadať denné menu, vyhľadávať jedlá podľa rôznych kritérií a pridávať recenzie.
+Webová aplikácia na prehliadanie jedální a obedov, hodnotenie jedál a zdieľanie recenzií. Používatelia si vytvoria účet, prihlásia sa osobným číslom alebo školským e-mailom a môžu spravovať vlastné recenzie v profile.
 
-## 🚀 Hlavné funkcie
+## 🚀 Funkcie
 
-* **Prehľad menu:** Zobrazovanie aktuálnej ponuky jedál pre konkrétne dni a menzy.
-* **Pokročilé vyhľadávanie:** Filtrovanie jedál podľa kategórií (polievky, hlavné jedlá, dezerty), ceny, alergénov a priemerného hodnotenia.
-* **Hodnotenie a recenzie:** Používatelia môžu jedlá hodnotiť hviezdičkami (1-5) a pridávať textové komentáre.
-* **Štatistiky pre jedálne:** Prehľad najlepšie hodnotených jedál a vyťaženia menzy v jednotlivých dňoch.
+* **Jedálne:** Zobrazenie názvov a adries jedální uložených v databáze.
+* **Obedy a recenzie:** Zoznam obedov zoradený podľa priemerného hodnotenia, vyhľadávanie podľa názvu a zobrazenie recenzií ku konkrétnemu obedu.
+* **Pridanie recenzie:** Prihlásený používateľ vyhľadá obed, ohodnotí ho od 1 do 5 hviezdičiek a napíše recenziu s dĺžkou aspoň 20 znakov. Každý používateľ môže pridať jednu recenziu ku každému obedu.
+* **Profil:** Zobrazenie údajov používateľa, zmena hesla, vyhľadávanie vlastných recenzií a ich odstránenie.
+* **Účet:** Registrácia kontroluje formát osobného čísla a hesla. Heslá sa ukladajú pomocou PHP `password_hash()`.
 
 ## 🛠️ Použité technológie
 
-* **Databáza:** PostgreSQL / MySQL (doplň podľa seba)
-* **Jazyk:** SQL (DDL pre tvorbu tabuliek, DML pre prácu s dátami)
-* **Voliteľné (Backend/Frontend):** napr. Python (Flask/FastAPI), Node.js, PHP
+* **Backend:** PHP a rozšírenie MySQLi
+* **Databáza:** MySQL alebo MariaDB
+* **Frontend:** HTML a CSS
 
-## 📐 Návrh databázy (ERD)
+## 📐 Databáza
 
-Databáza pozostáva z nasledujúcich hlavných entít:
-* `Pouzivatel` (študenti, zamestnanci, administrátori)
-* `Menza` (zoznam jedální v rámci univerzity)
-* `Jedlo` (názov, cena, kategória, alergény)
-* `DenneMenu` (prepojovacia tabuľka pre priradenie jedál ku dňom a menzám)
-* `Hodnotenie` (recenzie, hviezdičky, časový údaj)
+Aplikácia používa databázu `recenze_obedu` so štyrmi tabuľkami:
 
-*(Sem môžeš vložiť odkaz na obrázok ER diagramu, napr.: `![ERD Diagram](docs/erd_diagram.png)`)*
+* `menza` obsahuje názov a adresu jedálne.
+* `obedy` obsahuje názov a dátum obeda, priemerné hodnotenie a odkaz na jedáleň.
+* `users` obsahuje prihlasovacie údaje a profil používateľa.
+* `recenze` spája používateľa s obedom a ukladá text, počet hviezdičiek a dátum recenzie.
+
+Priemerné hodnotenie v tabuľke `obedy` sa prepočíta po pridaní recenzie. Väzby medzi tabuľkami sú definované cudzími kľúčmi.
 
 ## 📥 Inštalácia a spustenie
 
-1. **Klonovanie repozitára:**
-   ```bash
-   git clone https://github.com
-   cd projekt-menza
-   ```
+1. Umiestnite projekt do priečinka `htdocs` v XAMPP a spustite Apache a MySQL.
+2. V MySQL vytvorte databázu s názvom `recenze_obedu`.
+3. Cez HeidiSQL alebo phpMyAdmin vyberte túto databázu a importujte súbor `ostatni/TvorbaTabulek_mysql.sql`.
+4. Skontrolujte prihlasovacie údaje a názov databázy v `php_skripty/connection.php`. Predvolené nastavenie používa `localhost`, používateľa `root`, prázdne heslo a databázu `recenze_obedu`.
+5. Vložte do tabuliek `menza` a `obedy` údaje, ktoré sa majú zobrazovať. Bez obedov nebude možné pridávať recenzie.
+6. Otvorte aplikáciu na `http://localhost/VejskaProjekt/` a vytvorte si účet cez registráciu.
 
-2. **Vytvorenie databázy a import dát:**
-   Prihláste sa do svojho databázového nástroja a spustite SQL skripty v tomto poradí:
-   ```bash
-   psql -U pouzivatel -d databaza -f sql/schema.sql  # Vytvorenie tabuliek
-   psql -U pouzivatel -d databaza -f sql/seeds.sql   # Import testovacích dát
-   ```
+Súbor `ostatni/Tabulky (funkční kód).sql` je starší návrh pre PostgreSQL a nie je určený na import do MySQL/MariaDB aplikácie.
 
-## 📊 Ukážky SQL dopytov
+## 📂 Štruktúra projektu
 
-### 1. Zobrazenie top 5 najlepšie hodnotených jedál
-```sql
-SELECT j.nazov, ROUND(AVG(h.skore), 2) AS priemerne_hodnotenie
-FROM Jedlo j
-JOIN Hodnotenie h ON j.id = h.jedlo_id
-GROUP BY j.id, j.nazov
-ORDER BY priemerne_hodnotenie DESC
-LIMIT 5;
-```
-
-### 2. Vyhľadanie jedál bez obsahu lepku (alergén č. 1)
-```sql
-SELECT nazov, cena 
-FROM Jedlo 
-WHERE allergen_mask NOT LIKE '%1%';
-```
-
-## 👥 Autori
-
-* **Tvoje Meno** - *Návrh DB, SQL dopyty, Optimalizácia* - [Môj GitHub](https://github.com)
+* `index.php`, `login.php`, `register.php`, `profil.php` a stránky s prehľadmi tvoria používateľské rozhranie.
+* `recenze_form.php` vyhľadáva obedy a zobrazuje formulár na pridanie recenzie.
+* `php_skripty/` obsahuje pripojenie k databáze, prihlásenie, registráciu, odhlásenie a operácie s recenziami.
+* `style.css` obsahuje štýly stránok.
+* `ostatni/` obsahuje SQL skripty a pomocné projektové materiály.

@@ -30,6 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 } else {
-    header("Location: ../php_stranky/login.php");
+    header("Location: ../login.php");
     exit();
 }
